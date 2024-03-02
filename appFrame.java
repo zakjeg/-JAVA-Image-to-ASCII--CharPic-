@@ -79,13 +79,20 @@ public class appFrame extends JFrame implements ActionListener {
         getContentPane().add(panel_4);
         panel_4.setLayout(new BorderLayout(0, 0));
 
-        slider = new JSlider();                                             //SLIDER
+        slider = new JSlider();                                         //SLIDER
         slider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                sliderXValue = slider.getValue();
-                sliderYValue = (int) (sliderXValue*razmerje/2.5);
-                lblNewLabel_3.setText(" " + sliderXValue + " x " + sliderYValue + " ");
+                if(selectedImageOk){
+                    sliderXValue = slider.getValue();
+                    sliderYValue = (int) (sliderXValue*razmerje/2.5);
+                    lblNewLabel_3.setText(" " + sliderXValue + " x " + sliderYValue);
+                }
+                else{
+                    lblNewLabel_3.setText(" No image selected.");
+                    lblNewLabel_5.setText("Cannot set resolution while no Image is selected.");
+                }
+
             }
         });
         panel_4.add(slider, BorderLayout.CENTER);
@@ -99,7 +106,7 @@ public class appFrame extends JFrame implements ActionListener {
         JPanel panel_5 = new JPanel();
         getContentPane().add(panel_5);
 
-        btnNewButton_2 = new JButton("Run Program!");
+        btnNewButton_2 = new JButton("Run Program");
         btnNewButton_2.addActionListener(this);
         panel_5.add(btnNewButton_2);
 
@@ -111,8 +118,14 @@ public class appFrame extends JFrame implements ActionListener {
         lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
         panel_6.add(lblNewLabel_4, BorderLayout.WEST);
 
-        lblNewLabel_5 = new JLabel( "Waiting for user Input (select Image)");
+        lblNewLabel_5 = new JLabel( "Waiting for user Input (select Image).");
         panel_6.add(lblNewLabel_5, BorderLayout.CENTER);
+
+        JPanel contentPaneWithPadding = new JPanel(new BorderLayout());
+        contentPaneWithPadding.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        //contentPaneWithPadding.setPreferredSize(new Dimension(1280,720));
+        contentPaneWithPadding.add(getContentPane(), BorderLayout.CENTER);
+        setContentPane(contentPaneWithPadding);
 
         this.setVisible(true);
     }
@@ -162,6 +175,7 @@ public class appFrame extends JFrame implements ActionListener {
                 File srcFile = new File(fileChooser.getSelectedFile().getAbsolutePath());
                 if (isValidImageFile(srcFile)) {
                     selectedImageOk=true;
+                    btnNewButton.setText(getLastTwoDirectories(srcFile.getAbsolutePath()));
                     lblNewLabel_5.setText("Select output Image destination folder.");
                     System.out.println("SelectedImageFile: " + srcFile.getAbsolutePath());
                     try {
@@ -171,7 +185,7 @@ public class appFrame extends JFrame implements ActionListener {
                     }
                 }else{
                     selectedImageOk=false;
-                    lblNewLabel_5.setText("Selected file is not a supported image format!");
+                    lblNewLabel_5.setText("Selected file is not a supported image format.");
                 }}
 
         }
@@ -182,8 +196,9 @@ public class appFrame extends JFrame implements ActionListener {
                 File saveFile = new File(fileDirectoryChooser.getSelectedFile().getAbsolutePath());
                 outputDestionatoin = saveFile.getAbsolutePath();
                 outputDestionatoin=chechPathFormat(outputDestionatoin);
+                btnNewButton_1.setText(getLastTwoDirectories(outputDestionatoin));
                 selectedDestination=true;
-                lblNewLabel_5.setText("Choose Image resolution and run the program!");
+                lblNewLabel_5.setText("Choose Image resolution and run the program.");
             }
         }
         if(e.getSource()==btnNewButton_2){
@@ -194,7 +209,7 @@ public class appFrame extends JFrame implements ActionListener {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                lblNewLabel_5.setText("Image saved to selected destination!");
+                lblNewLabel_5.setText("Image saved to selected destination.");
             }
             else{
                 lblNewLabel_5.setText("You must first set the input and output file.");
@@ -215,5 +230,15 @@ public class appFrame extends JFrame implements ActionListener {
             minWidth = 25;
         }else {int minWidth = maxWidth;}
         setSliderLimits(minWidth,maxWidth);
+    }
+    public String getLastTwoDirectories(String path) {
+        String[] directories = path.split("\\\\|/");
+        int length = directories.length;
+
+        if (length < 2) {
+            return path; // Return the full path if it has less than two directories
+        } else {
+            return directories[length - 2] + File.separator + directories[length - 1];
+        }
     }
 }
