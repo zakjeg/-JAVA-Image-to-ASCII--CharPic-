@@ -85,7 +85,7 @@ public class appFrame extends JFrame implements ActionListener {
             public void stateChanged(ChangeEvent e) {
                 if(selectedImageOk){
                     sliderXValue = slider.getValue();
-                    sliderYValue = (int) (sliderXValue*razmerje/2.5);
+                    sliderYValue = (int) (sliderXValue*razmerje); // (sliderXValue*razmerje/2.5);
                     lblNewLabel_3.setText(" " + sliderXValue + " x " + sliderYValue);
                 }
                 else{
@@ -225,6 +225,7 @@ public class appFrame extends JFrame implements ActionListener {
     public void getMaxMinRes(File imageFile) throws IOException{
         slika = ImageIO.read(imageFile);
         maxWidth = slika.getWidth();
+        if(maxWidth>500)maxWidth=500;
         razmerje = 1.0*slika.getHeight()/slika.getWidth();
         if(maxWidth>=25){
             minWidth = 25;

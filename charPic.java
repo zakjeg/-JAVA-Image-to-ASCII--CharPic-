@@ -67,24 +67,26 @@ public class charPic {
         }
         return grayscaleImage;
     }
-    private static void getPixelIntensityAndWriteOut(BufferedImage image, String outputDestionatoin) throws IOException {
-        FileWriter writer = new FileWriter(outputDestionatoin);
+    private static void getPixelIntensityAndWriteOut(BufferedImage image, String outputDestination) throws IOException {
+        FileWriter writer = new FileWriter(outputDestination);
         Color color;
-        for(int y=0; y<image.getHeight();y++){
+        // Adjust the aspect ratio by using two characters for each pixel
+        for (int y = 0; y < image.getHeight(); y++) {
             writer.write("\n");
-            for(int x=0;x<image.getWidth();x++){
-                color = new Color(image.getRGB(x,y));
+            for (int x = 0; x < image.getWidth(); x++) {
+                color = new Color(image.getRGB(x, y));
+                writer.write(mapIntensityToASCII(color.getRed()));
                 writer.write(mapIntensityToASCII(color.getRed()));
             }
         }
         writer.close();
     }
     public static void convertImage(BufferedImage slika, int width, int height, String outputDestination) throws IOException {
-        System.out.println("program has been runned");
+        System.out.println("converting image...");
         getPixelIntensityAndWriteOut(convertToGrayscale(resizeImage(slika,width,height)), outputDestination);
     }
     public static void main(String[] args) {
-        System.out.println("runned!");
+        System.out.println("running...");
         appFrame frame = new appFrame();
     }
 }
