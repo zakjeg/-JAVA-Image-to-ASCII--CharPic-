@@ -18,6 +18,15 @@ Java progarm with GUI that converts Images to ASCII
    * Select output file destination and name.
    * Select the output resolution of the ASCII image.
    * Run the program
+# A look at the GUI
+![Screenshot of the App GUI](CharPicGuiPreview.png)
+
+# Examples
+
+![example of converted image1](example1.png)
+![example of converted image2](example2.png)
+
+
 # Dependencies
 * Java 8 or higher
 * Java Swing (included in standard Java libraries)

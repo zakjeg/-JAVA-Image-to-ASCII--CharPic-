@@ -26,6 +26,8 @@ public class appFrame extends JFrame implements ActionListener {
     //String statusText = "Waiting for user Input (select src. Image)";
 
 
+
+
     private static final long serialVersionUID = 1L;
     private JTextField txtCharpic;
     private final JLabel lblNewLabel_3 = new JLabel(" " + xResolution + " x " + yResolution + " ");
@@ -85,7 +87,7 @@ public class appFrame extends JFrame implements ActionListener {
             public void stateChanged(ChangeEvent e) {
                 if(selectedImageOk){
                     sliderXValue = slider.getValue();
-                    sliderYValue = (int) (sliderXValue*razmerje); // (sliderXValue*razmerje/2.5);
+                    sliderYValue = (int) (sliderXValue*razmerje/1.2); //(sliderXValue*razmerje); //popravek širine
                     lblNewLabel_3.setText(" " + sliderXValue + " x " + sliderYValue);
                 }
                 else{
