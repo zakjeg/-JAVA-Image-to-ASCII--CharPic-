@@ -1,5 +1,5 @@
 # [JAVA] Image to ASCII - CharPic
-Java progarm with GUI that converts Images to ASCII 
+Java progarm with Java Swing GUI that converts Images to ASCII 
 
 # Features
 * **image to ASCII Conversion:**
