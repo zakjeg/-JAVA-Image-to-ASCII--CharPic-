@@ -11,7 +11,7 @@ Java progarm with Java Swing GUI that converts Images to ASCII
 1. Clone the Repository:
 `git clone https://github.com/zakjeg/CharPic.git`
 2. Compile and Run:
-   * Open the project in your favorite Java IDE or terminal (e.g., IntelliJ IDEA, Eclipse).
+   * Open the project in your favorite Java IDE or terminal.
    * Compile and run the `CharPicApp.java`
 4. Use the GUI:
    * Select Image to convert.
