@@ -131,7 +131,7 @@ public class appFrame extends JFrame implements ActionListener {
 
         this.setVisible(true);
     }
-    public static String chechPathFormat(String path) {
+    private String chechPathFormat(String path) {
         if (path.endsWith(".txt")) {
             return path;
         } else {
@@ -143,7 +143,7 @@ public class appFrame extends JFrame implements ActionListener {
             }
         }
     }
-    private static boolean isValidImageFile(File file) {
+    private boolean isValidImageFile(File file) {
         String extension = getFileExtension(file);
         String[] supportedFormats = ImageIO.getReaderFileSuffixes();
         if(!extension.isEmpty()){
@@ -156,7 +156,7 @@ public class appFrame extends JFrame implements ActionListener {
         return false;
     }
 
-    private static String getFileExtension(File file) {
+    private String getFileExtension(File file) {
         String name = file.getName();
         int lastIndexOfDot = name.lastIndexOf('.');
         if (lastIndexOfDot == -1) {
@@ -218,13 +218,13 @@ public class appFrame extends JFrame implements ActionListener {
             }
         }
     }
-    public void setSliderLimits(int sliderMin, int sliderMax){
+    private void setSliderLimits(int sliderMin, int sliderMax){
         slider.setMaximum(sliderMax);
         slider.setMinimum(sliderMin);
         slider.setValue((sliderMax/2+sliderMin/2));
         lblNewLabel_5.setText("SliderMaxResoluiton is " + sliderMax + "Slider min resolution = " + sliderMin);
     }
-    public void getMaxMinRes(File imageFile) throws IOException{
+    private void getMaxMinRes(File imageFile) throws IOException{
         slika = ImageIO.read(imageFile);
         maxWidth = slika.getWidth();
         if(maxWidth>500)maxWidth=500;
@@ -234,7 +234,7 @@ public class appFrame extends JFrame implements ActionListener {
         }else {int minWidth = maxWidth;}
         setSliderLimits(minWidth,maxWidth);
     }
-    public String getLastTwoDirectories(String path) {
+    private String getLastTwoDirectories(String path) {
         String[] directories = path.split("\\\\|/");
         int length = directories.length;
 

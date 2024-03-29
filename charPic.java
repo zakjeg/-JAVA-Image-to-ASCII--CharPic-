@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class charPic {
-    public static char mapIntensityToASCII(int pixelIntensity) {
+    private static char mapIntensityToASCII(int pixelIntensity) {
         if (pixelIntensity >= 0 && pixelIntensity <= 15) {
             return '#';
         } else if (pixelIntensity <= 31) {
@@ -48,7 +48,7 @@ public class charPic {
 
         return resizedImage;
     }
-    public static BufferedImage convertToGrayscale(BufferedImage originalImage) {
+    private static BufferedImage convertToGrayscale(BufferedImage originalImage) {
         int width = originalImage.getWidth();
         int height = originalImage.getHeight();
 
