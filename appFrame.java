@@ -23,13 +23,11 @@ public class appFrame extends JFrame implements ActionListener {
     int sliderYValue;
     boolean selectedImageOk = false;
     boolean selectedDestination = false;
-    //String statusText = "Waiting for user Input (select src. Image)";
 
 
 
 
     private static final long serialVersionUID = 1L;
-    private JTextField txtCharpic;
     private final JLabel lblNewLabel_3 = new JLabel(" " + xResolution + " x " + yResolution + " ");
 
     JButton btnNewButton;
@@ -40,7 +38,7 @@ public class appFrame extends JFrame implements ActionListener {
 
     public appFrame() {
         ImageIcon image = new ImageIcon(getClass().getResource("CharPic.png"));
-        //String path = "C:\\Users\\zak\\IdeaProjects\\CharPic\\src\\charPic.java";
+
         this.setIconImage(image.getImage());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
@@ -125,7 +123,6 @@ public class appFrame extends JFrame implements ActionListener {
 
         JPanel contentPaneWithPadding = new JPanel(new BorderLayout());
         contentPaneWithPadding.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-        //contentPaneWithPadding.setPreferredSize(new Dimension(1280,720));
         contentPaneWithPadding.add(getContentPane(), BorderLayout.CENTER);
         setContentPane(contentPaneWithPadding);
 
@@ -239,7 +236,7 @@ public class appFrame extends JFrame implements ActionListener {
         int length = directories.length;
 
         if (length < 2) {
-            return path; // Return the full path if it has less than two directories
+            return path; //if path < 2; returns full path
         } else {
             return directories[length - 2] + File.separator + directories[length - 1];
         }

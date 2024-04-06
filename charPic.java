@@ -70,7 +70,6 @@ public class charPic {
     private static void getPixelIntensityAndWriteOut(BufferedImage image, String outputDestination) throws IOException {
         FileWriter writer = new FileWriter(outputDestination);
         Color color;
-        // Adjust the aspect ratio by using two characters for each pixel
         for (int y = 0; y < image.getHeight(); y++) {
             writer.write("\n");
             for (int x = 0; x < image.getWidth(); x++) {
@@ -82,11 +81,12 @@ public class charPic {
         writer.close();
     }
     public static void convertImage(BufferedImage slika, int width, int height, String outputDestination) throws IOException {
-        System.out.println("converting image...");
+        System.out.println("Converting image...");
         getPixelIntensityAndWriteOut(convertToGrayscale(resizeImage(slika,width,height)), outputDestination);
+        System.out.println("Saved to oudput destination.");
     }
     public static void main(String[] args) {
-        System.out.println("running...");
+        System.out.println("Started.");
         appFrame frame = new appFrame();
     }
 }
